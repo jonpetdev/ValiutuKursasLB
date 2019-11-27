@@ -13,10 +13,10 @@
         defaults = {
             classes: '',
             inline: false,
-            language: 'ru',
+            language: 'lt',
             startDate: new Date(),
             firstDay: '',
-            weekends: [6, 0],
+            weekends: [5, 6],
             dateFormat: '',
             altField: '',
             altFieldDateFormat: '@',
@@ -223,13 +223,13 @@
             if (typeof lang == 'string') {
                 this.loc = $.fn.datepicker.language[lang];
                 if (!this.loc) {
-                    console.warn('Can\'t find language "' + lang + '" in Datepicker.language, will use "ru" instead');
-                    this.loc = $.extend(true, {}, $.fn.datepicker.language.ru)
+                    console.warn('Can\'t find language "' + lang + '" in Datepicker.language, will use "lt" instead');
+                    this.loc = $.extend(true, {}, $.fn.datepicker.language.lt)
                 }
 
-                this.loc = $.extend(true, {}, $.fn.datepicker.language.ru, $.fn.datepicker.language[lang])
+                this.loc = $.extend(true, {}, $.fn.datepicker.language.lt, $.fn.datepicker.language[lang])
             } else {
-                this.loc = $.extend(true, {}, $.fn.datepicker.language.ru, lang)
+                this.loc = $.extend(true, {}, $.fn.datepicker.language.lt, lang)
             }
 
             if (this.opts.dateFormat) {
@@ -1472,17 +1472,18 @@
     $.fn.datepicker.Constructor = Datepicker;
 
     $.fn.datepicker.language = {
-        ru: {
-            days: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
-            daysShort: ['Вос','Пон','Вто','Сре','Чет','Пят','Суб'],
-            daysMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
-            months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
-            monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
-            today: 'Сегодня',
-            clear: 'Очистить',
-            dateFormat: 'dd.mm.yyyy',
+        lt: {
+            days: ['Sekmadienis','Pirmadienis', 'Antradienis', 'Terčiadienis', 'Ketvirtadienis', 'Penktadienis', 'Šeštadienis'],
+            daysShort: ['Sekm','Pirm','Ant','Treč','Ket','Pen','Šeš'],
+            daysMin: ['Se','Pi','An','Tr','Ke','Pe','Še'],
+            months: ['Sausis', 'Vasaris', 'Kovas', 'Balandis', 'Gegužė', 'Birželis', 'Liepa', 'Rugpjūtis', 'Rugsėjis', 'Spalis', 'Lapkritis', 'Gruodis'],
+            monthsShort: ['Sau', 'Vas', 'Kov', 'Bal', 'Geg', 'Bir', 'Lie', 'Rugp', 'Rugs', 'Spa', 'Lap', 'Gruo'],
+            today: 'Šiandiena',
+            clear: 'išvalyti',
+            dateFormat: 'yyyy-mm-dd',
             timeFormat: 'hh:ii',
             firstDay: 1
+
         }
     };
 

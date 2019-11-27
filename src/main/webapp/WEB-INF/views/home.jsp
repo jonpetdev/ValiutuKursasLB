@@ -6,39 +6,48 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
+
     <title>Valiutos Kursai</title>
     <link href="${contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script>
 
+    <script>
         var disabledDays = [0, 6];
+        var disableDates = ${holidays};
         $(function() {
             $('#datepickerFrom').datepicker({
-                language: 'en',
+                maxDate:new Date,
                 onRenderCell: function (date, cellType) {
                     if (cellType == 'day') {
-                        var day = date.getDay(),
-                            isDisabled = disabledDays.indexOf(day) != -1;
+                        var ymd = date.getFullYear()+"-" +(date.getMonth()+1) + "-" + date.getDate();
+                        var day = date.getDay();
+                        var isDisabled = (disableDates.indexOf(ymd) != -1)+(disabledDays.indexOf(day) != -1) ;
 
-                        return {
-                            disabled: isDisabled
-                        }
+                        return { disabled: isDisabled }
                     }
+
                 }
+
             })
         });
 
+
     </script>
     <link href="${contextPath}/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
-    <script src="${contextPath}/dist/js/datepicker.min.js"></script>
-    <script src="${contextPath}/dist/js/i18n/datepicker.en.js"></script>
+    <script src="${contextPath}/dist/js/datepicker.js"></script>
+
+
 </head>
 
 <body style="background-image: url('${contextPath}/resources/pic.jpg')" >
 
-    <div class="container">
+    <div class="container" style="border: solid 1px white;
+                                    -webkit-box-shadow: -1px -1px 10px 2px white;
+                                    -moz-box-shadow: -1px -1px 10px 2px white;
+                                    box-shadow: -1px -1px 10px 2px white;
+                                    background-color: rgba(45, 201, 76, 0.3)">
         <form:form method="POST" modelAttribute="modelForm">
             <div style="margin-top: 30px">
                 <div class="d-inline-block">
@@ -60,7 +69,9 @@
     </div>
 
     <c:if test="${empty infoList}">
-        <h2>${change}</h2>
+        <div class="container">
+             <h2  >${change}</h2>
+        </div>
     </c:if>
 
 
